@@ -6,7 +6,8 @@ const Movie = (props) => {
 
   return (
     <div className="MovieList">
-      {movies.map((movie) => {
+      {movies && movies.length > 0 ? (
+        movies.map((movie) => {
         return (
           <div className="movie" key={movie._id}>
             <div className="image-container">
@@ -22,7 +23,10 @@ const Movie = (props) => {
             </div>
           </div>
         );
-      })}
+      })
+    ) : (
+      <div><p>Sorry, no movies were found for your search query. Please try a different search.</p></div>
+    )}
     </div>
   );
 };

@@ -8,11 +8,14 @@ const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function searchMovie(query) {
     try {
+      setLoading(true);
       const response = await fetch(
-        `http://127.0.0.1:8000/search_movie_api/search_movies?keyword=${query}`
+        // `http://127.0.0.1:8000/search_movie_api/search_movies?keyword=${query}`
+        `https://byy6o4kam7gnld5jjcrjtynq3a0gcqje.lambda-url.ap-south-1.on.aws/?keyword=${query}`
       );
 
       if (response.ok) {
@@ -26,6 +29,10 @@ const SearchBar = () => {
     } catch (error) {
       setError("Sorry, no movies were found for your search query. Please try a different search.");
       setMovies([]);
+    }
+    finally 
+    {
+      setLoading(false); // Stop loading when the API call is complete
     }
   }
 
@@ -58,7 +65,11 @@ const SearchBar = () => {
       </form>
       {error && <p className="error">{error}</p>}
 
-      {searchQuery ? <Movie movies={movies} /> : <MoviesList />}
+      {loading ? ( // Show loader if loading is true
+        <div className="loader"></div>
+      ) : (
+        searchQuery ? <Movie movies={movies} /> : <MoviesList />
+      )}
     </div>
   );
 };

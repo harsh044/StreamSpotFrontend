@@ -1,6 +1,9 @@
 # Node.js / NPM
 node_modules/
 .env
+.firebase
+.firebaserc
+firebase.json
 
 # Build output
 build/
