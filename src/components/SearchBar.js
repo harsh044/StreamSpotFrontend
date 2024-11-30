@@ -1,20 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Movie from "./Movie";
 import MoviesList from "./MoviesList";
 import "../App.css";
-import logo from '../assets/streamspot.png';
+import logo from "../assets/streamspot.png";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // For navigation
 
   async function searchMovie(query) {
     try {
       setLoading(true);
       const response = await fetch(
-        // `http://127.0.0.1:8000/search_movie_api/search_movies?keyword=${query}`
         `https://byy6o4kam7gnld5jjcrjtynq3a0gcqje.lambda-url.ap-south-1.on.aws/?keyword=${query}`
       );
 
@@ -29,10 +30,8 @@ const SearchBar = () => {
     } catch (error) {
       setError("Sorry, no movies were found for your search query. Please try a different search.");
       setMovies([]);
-    }
-    finally 
-    {
-      setLoading(false); // Stop loading when the API call is complete
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -65,11 +64,17 @@ const SearchBar = () => {
       </form>
       {error && <p className="error">{error}</p>}
 
-      {loading ? ( // Show loader if loading is true
+      {loading ? (
         <div className="loader"></div>
       ) : (
         searchQuery ? <Movie movies={movies} /> : <MoviesList />
       )}
+
+      {/* Buttons for navigation */}
+      <div className="buttons-container">
+        <button onClick={() => navigate("/how-to-download")}>How to Download Movies</button>
+        <button onClick={() => navigate("/request-movie")}>Request a Movie</button>
+      </div>
     </div>
   );
 };
