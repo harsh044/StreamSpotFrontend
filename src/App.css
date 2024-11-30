@@ -160,8 +160,8 @@ form h1 a{
 }
 
 @media (320px <= width <=480px){
-  .form h1{
-font-size: 1.5rem;
+  .form h1 a{
+  font-size: 40px;
   }
 
   .form input{
