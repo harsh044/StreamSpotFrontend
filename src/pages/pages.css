@@ -1,0 +1,137 @@
+.Navigation {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .instructionsContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    flex-wrap: wrap; /* This allows items to wrap into a new line on small screens */
+  }
+  
+  .instructionsColumn {
+    width: 45%; /* Each column will take 45% of the available width */
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width calculation */
+  }
+  
+  .instructionsColumn img {
+    width: 100%; /* Ensures images are responsive */
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  .backButtonStyle {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .backButtonStyle:hover {
+    background-color: #45a049;
+  }
+
+  /* General Container */
+.request-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  /* background-color: rgba(255, 255, 255, 0.8);  Semi-transparent white */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  backdrop-filter: blur(10px); /* Add a slight blur for a glass-like effect */
+}
+
+/* Form Styles */
+.request-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  /* color: #333; */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: black;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.submit-button,
+.back-button {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.back-button {
+  background-color: #6c757d;
+}
+
+.submit-button:hover,
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+/* Success/Error Message */
+.message {
+  margin-top: 15px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .instructionsColumn {
+      width: 100%; /* On smaller screens, columns will take up full width */
+      margin-bottom: 20px; /* Add spacing between the columns when stacked */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.5em; /* Adjust the font size for smaller screens */
+    }
+  
+    .backButtonStyle {
+      padding: 8px 16px; /* Adjust the button size for smaller screens */
+    }
+  }
+  

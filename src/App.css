@@ -218,4 +218,11 @@ form h1 a{
     display: flex;
     flex-direction: column;
   }
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 0px;
+  }
 }
