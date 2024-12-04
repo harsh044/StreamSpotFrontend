@@ -11,9 +11,52 @@ const RequestMovie = () => {
   });
 
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // New state for loading
+  const [loading, setLoading] = useState(false);
+  const [language, setLanguage] = useState("en"); // Language state
 
-  // Update form data when input values change
+  // Translations for labels and placeholders
+  const translations = {
+    en: {
+      title: "Request a Movie",
+      description: "Let us know which movie you'd like to see!",
+      firstName: "First Name:",
+      lastName: "Last Name:",
+      movieName: "Movie Name You Want:",
+      placeholderFirstName: "Enter your first name",
+      placeholderLastName: "Enter your last name",
+      placeholderMovieName: "Enter the movie name",
+      submit: "Submit",
+      submitting: "Submitting...",
+      back: "Back",
+    },
+    mr: {
+      title: "चित्रपटाची मागणी करा",
+      description: "आपल्याला कोणता चित्रपट पहायचा आहे ते कळवा!",
+      firstName: "पहिले नाव:",
+      lastName: "आडनाव:",
+      movieName: "तुम्हाला हवा असलेला चित्रपट:",
+      placeholderFirstName: "तुमचे पहिले नाव प्रविष्ट करा",
+      placeholderLastName: "तुमचे आडनाव प्रविष्ट करा",
+      placeholderMovieName: "चित्रपटाचे नाव प्रविष्ट करा",
+      submit: "सबमिट करा",
+      submitting: "सबमिट करत आहे...",
+      back: "मागे जा",
+    },
+    hi: {
+      title: "फिल्म का अनुरोध करें",
+      description: "हमें बताएं कि आप कौन सी फिल्म देखना चाहते हैं!",
+      firstName: "पहला नाम:",
+      lastName: "अंतिम नाम:",
+      movieName: "आप कौन सी फिल्म चाहते हैं:",
+      placeholderFirstName: "अपना पहला नाम दर्ज करें",
+      placeholderLastName: "अपना अंतिम नाम दर्ज करें",
+      placeholderMovieName: "फिल्म का नाम दर्ज करें",
+      submit: "सबमिट करें",
+      submitting: "सबमिट कर रहा है...",
+      back: "वापस",
+    },
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -22,7 +65,6 @@ const RequestMovie = () => {
     }));
   };
 
-  // Send form data to API
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,11 +75,11 @@ const RequestMovie = () => {
       return;
     }
 
-    setLoading(true); // Start loading indicator
+    setLoading(true);
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/streamspot_sendmail_api/streamspot_sendmail?first_name=${firstName}&last_name=${lastName}&movie_name=${movieName}`,
+        `https://b7zllnd2wxcplch3hjp5edeoia0lgrwk.lambda-url.ap-south-1.on.aws/?first_name=${firstName}&last_name=${lastName}&movie_name=${movieName}`,
         {
           method: "POST",
           headers: {
@@ -55,55 +97,68 @@ const RequestMovie = () => {
     } catch (error) {
       setMessage("An error occurred. Please try again.");
     } finally {
-      setLoading(false); // Stop loading indicator after the request is completed
+      setLoading(false);
     }
   };
 
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+  };
+
+  const t = translations[language]; // Current language translations
+
   return (
     <div className="request-container">
-      <h1>Request a Movie</h1>
-      <p>Let us know which movie you'd like to see!</p>
+      <h1>{t.title}</h1>
+      <p>{t.description}</p>
+
+      <div className="language-toggle">
+        <button onClick={() => handleLanguageChange("en")}>English</button>
+        <button onClick={() => handleLanguageChange("mr")}>मराठी</button>
+        <button onClick={() => handleLanguageChange("hi")}>हिंदी</button>
+      </div>
+
       <form onSubmit={handleSubmit} className="request-form">
         <div className="form-group">
-          <label>First Name:</label>
+          <label>{t.firstName}</label>
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
             required
-            placeholder="Enter your first name"
+            placeholder={t.placeholderFirstName}
           />
         </div>
         <div className="form-group">
-          <label>Last Name:</label>
+          <label>{t.lastName}</label>
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
             required
-            placeholder="Enter your last name"
+            placeholder={t.placeholderLastName}
           />
         </div>
         <div className="form-group">
-          <label>Movie Name You Want:</label>
+          <label>{t.movieName}</label>
           <input
             type="text"
             name="movieName"
             value={formData.movieName}
             onChange={handleChange}
             required
-            placeholder="Enter the movie name"
+            placeholder={t.placeholderMovieName}
           />
         </div>
         <button type="submit" className="submit-button" disabled={loading}>
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? t.submitting : t.submit}
         </button>
       </form>
       {message && <p className="message">{message}</p>}
       <button onClick={() => navigate(-1)} className="back-button">
-        Back
+        {t.back}
       </button>
     </div>
   );

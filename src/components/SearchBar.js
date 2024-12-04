@@ -47,10 +47,11 @@ const SearchBar = () => {
   }
 
   return (
-    <div>
+    <div className="search-container">
+      {/* Logo and Search Bar */}
       <form action="" className="form">
-        <div>
-          <a href="/"><img src={logo} alt="StreamSpot"></img></a>
+        <div className="logo-container">
+          <a href="/"><img src={logo} alt="StreamSpot" className="logo" /></a>
           <h1><a href="/">StreamSpot</a></h1>
         </div>
 
@@ -62,6 +63,13 @@ const SearchBar = () => {
           className="search-input"
         />
       </form>
+
+      {/* Buttons below the logo and search */}
+      <div className="buttons-container">
+        <button onClick={() => navigate("/how-to-download")}>How to Download Movies</button>
+        <button onClick={() => navigate("/request-movie")}>Request a Movie</button>
+      </div>
+
       {error && <p className="error">{error}</p>}
 
       {loading ? (
@@ -69,12 +77,6 @@ const SearchBar = () => {
       ) : (
         searchQuery ? <Movie movies={movies} /> : <MoviesList />
       )}
-
-      {/* Buttons for navigation */}
-      <div className="buttons-container">
-        <button onClick={() => navigate("/how-to-download")}>How to Download Movies</button>
-        <button onClick={() => navigate("/request-movie")}>Request a Movie</button>
-      </div>
     </div>
   );
 };
