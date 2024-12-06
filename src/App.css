@@ -167,13 +167,25 @@ form h1 a{
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
-  color: white;
+  color: black;
+  font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: cursive;
 }
-
+.buttons-container button a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.pay_button{
+  background-color: yellow!important;
+}
+.pay_button a{
+  font-family: cursive;
+}
 .buttons-container button:hover {
   background-color: #0056b3;
 }

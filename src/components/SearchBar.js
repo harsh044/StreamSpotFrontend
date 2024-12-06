@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Movie from "./Movie";
 import MoviesList from "./MoviesList";
 import "../App.css";
 import logo from "../assets/streamspot.png";
+import Coffee from "../assets/mug-hot-solid.svg";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -68,6 +69,8 @@ const SearchBar = () => {
       <div className="buttons-container">
         <button onClick={() => navigate("/how-to-download")}>How to Download Movies</button>
         <button onClick={() => navigate("/request-movie")}>Request a Movie</button>
+        {/* <button className="pay_button"><a href="https://rzp.io/rzp/1Vu2iM1z" target="_blank" rel="noreferrer">Buy Me a Coffee <img src={Coffee} alt="Coffee Icon" width="24" height="24" /></a></button> } Test Mode */}
+        <button className="pay_button"><a href="https://rzp.io/rzp/VCeWG1a" target="_blank" rel="noreferrer">Buy Me a Coffee <img src={Coffee} alt="Coffee Icon" width="24" height="24" /></a></button> {/*Live Mode */}
       </div>
 
       {error && <p className="error">{error}</p>}

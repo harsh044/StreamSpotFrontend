@@ -8,6 +8,7 @@ firebase.json
 # Build output
 build/
 dist/
+*.csv
 
 # macOS
 .DS_Store
